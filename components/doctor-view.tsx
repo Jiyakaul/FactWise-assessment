@@ -133,9 +133,14 @@ export default function DoctorView() {
     getActivePatients,
   } = facilityData;
 
-  const [selectedPatientId, setSelectedPatientId] = useState<string | null>(null);
+  const [selectedPatientId, setSelectedPatientId] = useState<number | string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [isCompletedOpen, setIsCompletedOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Modal local state
   const [doctorNoteInput, setDoctorNoteInput] = useState("");
@@ -186,10 +191,10 @@ export default function DoctorView() {
 
   // Selected patient details
   const selectedPatient = useMemo(() => {
-    if (!selectedPatientId) return null;
+    if (selectedPatientId === null || selectedPatientId === undefined) return null;
     return (
-      activePatients.find((p: any) => p.id === selectedPatientId) ||
-      (patients || []).find((p: any) => p.id === selectedPatientId) ||
+      activePatients.find((p: any) => String(p.id) === String(selectedPatientId)) ||
+      (patients || []).find((p: any) => String(p.id) === String(selectedPatientId)) ||
       null
     );
   }, [selectedPatientId, activePatients, patients]);
@@ -216,7 +221,7 @@ export default function DoctorView() {
   }, []);
 
   // Handlers
-  const handleOpenPatient = (patientId: string) => {
+  const handleOpenPatient = (patientId: any) => {
     setSelectedPatientId(patientId);
   };
 
@@ -494,7 +499,7 @@ export default function DoctorView() {
                       <div className="text-xs text-slate-400 flex items-center gap-2 mt-0.5">
                         {patient.age && <span>{patient.age}y</span>}
                         {patient.gender && <span>• {patient.gender}</span>}
-                        <span>• ID: {patient.id.slice(0, 8)}</span>
+                        <span>• ID: {String(patient.id).slice(0, 8)}</span>
                       </div>
                     </div>
 
@@ -608,7 +613,7 @@ export default function DoctorView() {
                       <div className="text-xs text-slate-400 flex items-center gap-2 mt-0.5">
                         {patient.age && <span>{patient.age}y</span>}
                         {patient.gender && <span>• {patient.gender}</span>}
-                        <span>• ID: {patient.id.slice(0, 8)}</span>
+                        <span>• ID: {String(patient.id).slice(0, 8)}</span>
                       </div>
                     </div>
 
@@ -916,63 +921,69 @@ export default function DoctorView() {
                   </div>
                 ) : (
                   <div className="h-60 w-full pt-2">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <LineChart
-                        data={chartData}
-                        margin={{ top: 15, right: 30, left: -10, bottom: 5 }}
-                      >
-                        <XAxis
-                          dataKey="date"
-                          stroke="#64748b"
-                          fontSize={11}
-                          tickLine={false}
-                          tick={{ fill: "#94a3b8" }}
-                        />
-                        <YAxis
-                          domain={[
-                            (dataMin: number) => Math.min(96, Math.floor(dataMin - 1)),
-                            (dataMax: number) => Math.max(102, Math.ceil(dataMax + 1)),
-                          ]}
-                          stroke="#64748b"
-                          fontSize={11}
-                          tickLine={false}
-                          unit="°F"
-                          tick={{ fill: "#94a3b8" }}
-                        />
-                        <Tooltip content={<ChartTooltip />} />
-                        <ReferenceLine
-                          y={100.4}
-                          stroke="#ef4444"
-                          strokeDasharray="4 4"
-                          strokeWidth={1.5}
-                          label={{
-                            value: "Fever Threshold (100.4°F)",
-                            fill: "#ef4444",
-                            position: "insideTopRight",
-                            fontSize: 11,
-                            fontWeight: 600,
-                          }}
-                        />
-                        <Line
-                          type="monotone"
-                          dataKey="temperature"
-                          stroke="#3b82f6"
-                          strokeWidth={2.5}
-                          dot={{
-                            r: 4,
-                            fill: "#3b82f6",
-                            stroke: "#1e293b",
-                            strokeWidth: 2,
-                          }}
-                          activeDot={{
-                            r: 6,
-                            fill: "#60a5fa",
-                            stroke: "#ffffff",
-                            strokeWidth: 2,
-                          }}
-                        />
-                      </LineChart>
-                    </ResponsiveContainer>
+                    {isMounted ? (
+                      <ResponsiveContainer width="100%" height="100%">
+                        <LineChart
+                          data={chartData}
+                          margin={{ top: 15, right: 30, left: -10, bottom: 5 }}
+                        >
+                          <XAxis
+                            dataKey="date"
+                            stroke="#64748b"
+                            fontSize={11}
+                            tickLine={false}
+                            tick={{ fill: "#94a3b8" }}
+                          />
+                          <YAxis
+                            domain={[
+                              (dataMin: number) => Math.min(96, Math.floor(dataMin - 1)),
+                              (dataMax: number) => Math.max(102, Math.ceil(dataMax + 1)),
+                            ]}
+                            stroke="#64748b"
+                            fontSize={11}
+                            tickLine={false}
+                            unit="°F"
+                            tick={{ fill: "#94a3b8" }}
+                          />
+                          <Tooltip content={<ChartTooltip />} />
+                          <ReferenceLine
+                            y={100.4}
+                            stroke="#ef4444"
+                            strokeDasharray="4 4"
+                            strokeWidth={1.5}
+                            label={{
+                              value: "Fever Threshold (100.4°F)",
+                              fill: "#ef4444",
+                              position: "insideTopRight",
+                              fontSize: 11,
+                              fontWeight: 600,
+                            }}
+                          />
+                          <Line
+                            type="monotone"
+                            dataKey="temperature"
+                            stroke="#3b82f6"
+                            strokeWidth={2.5}
+                            dot={{
+                              r: 4,
+                              fill: "#3b82f6",
+                              stroke: "#1e293b",
+                              strokeWidth: 2,
+                            }}
+                            activeDot={{
+                              r: 6,
+                              fill: "#60a5fa",
+                              stroke: "#ffffff",
+                              strokeWidth: 2,
+                            }}
+                          />
+                        </LineChart>
+                      </ResponsiveContainer>
+                    ) : (
+                      <div className="h-full w-full flex items-center justify-center text-xs text-slate-500">
+                        Loading vitals telemetry...
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

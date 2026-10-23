@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Assessment: Technical Product Manager - FactWise</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 18mm 20mm 18mm;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1e293b;
+    line-height: 1.5;
+    font-size: 13px;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  .header-box {
+    border-bottom: 2px solid #0284c7;
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 4px 0;
+  }
+  .subtitle {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+  }
+  .badge {
+    background: #e0f2fe;
+    color: #0369a1;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  h2 {
+    font-size: 16px;
+    color: #0f172a;
+    border-left: 4px solid #0284c7;
+    padding-left: 8px;
+    margin: 22px 0 10px 0;
+  }
+  h3 {
+    font-size: 14px;
+    color: #1e293b;
+    margin: 14px 0 6px 0;
+  }
+  p {
+    margin: 6px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 16px 0;
+    font-size: 11.5px;
+  }
+  th, td {
+    border: 1px solid #cbd5e1;
+    padding: 6px 8px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #f1f5f9;
+    color: #0f172a;
+    font-weight: 700;
+  }
+  tr:nth-child(even) td {
+    background: #f8fafc;
+  }
+  .highlight-row td {
+    background: #ecfdf5 !important;
+    font-weight: 600;
+    color: #065f46;
+  }
+  .alert-box {
+    background: #fef2f2;
+    border-left: 4px solid #ef4444;
+    padding: 8px 12px;
+    margin: 10px 0;
+    font-size: 12px;
+    color: #991b1b;
+  }
+  .info-box {
+    background: #f0fdf4;
+    border-left: 4px solid #10b981;
+    padding: 8px 12px;
+    margin: 10px 0;
+    font-size: 12px;
+    color: #065f46;
+  }
+  .code-block {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-family: Consolas, Monaco, "Courier New", monospace;
+    font-size: 11px;
+    overflow-x: auto;
+    margin: 8px 0;
+  }
+  .page-break {
+    page-break-before: always;
+  }
+  ul, ol {
+    margin: 4px 0 10px 0;
+    padding-left: 20px;
+  }
+  li {
+    margin-bottom: 3px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-box">
+  <div>
+    <div class="title">Assessment: Technical Product Manager</div>
+    <div class="subtitle">Submission for FactWise | Candidate Name: TPM Assessment</div>
+  </div>
+  <div>
+    <span class="badge">Comprehensive Submission</span>
+  </div>
+</div>
+
+<h2>Problem Statement & Operational Context</h2>
+<p>
+  A specialized quarantine and treatment facility managing a high-consequence viral outbreak (15% mortality rate benchmark, 74-bed capacity at full occupancy) is suffering from critical operational bottlenecks:
+</p>
+<ul>
+  <li><strong>Unsynchronized Rounds:</strong> Doctors visit patients before nurses take temperatures, wasting clinical bandwidth.</li>
+  <li><strong>Discharge Bottlenecks:</strong> Patients stay an extra 1–2 days because 3-day fever-free recoveries are not promptly communicated to administration.</li>
+  <li><strong>Zero Telemetry:</strong> No visibility into treatment efficacy or monitoring against the 15% mortality / 85% cure benchmark.</li>
+</ul>
+
+<h2>Q1: User Types, Features & Action Mapping (MVP)</h2>
+<p>The solution structures workflows across 4 distinct user personas:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 18%;">User Persona</th>
+      <th style="width: 32%;">Core Responsibility & Pain Point Solved</th>
+      <th style="width: 50%;">Features & Permitted Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1. Nurse</strong></td>
+      <td>Daily vitals round accountability; eliminates journal logging, duplicate measurements, and missed checks.</td>
+      <td>
+        • <strong>Daily Queue Filter:</strong> Toggle between <em>Needs Check</em> and <em>Completed Today</em>.<br>
+        • <strong>Record Temperature Modal:</strong> Input in °F with instant color feedback (Green: &lt;99.5°, Orange: 99.5–100.3°, Red: &ge;100.4°F).<br>
+        • <strong>Streak Tracker:</strong> Real-time visual progress counter toward the 3-day fever-free discharge rule.<br>
+        • <em>Restricted:</em> Cannot approve discharges or alter bed admissions.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>2. Attending Doctor</strong></td>
+      <td>Eliminates wasted trips prior to vitals; reviews trendlines; authorizes cures without administrative latency.</td>
+      <td>
+        • <strong>Prioritized Queue:</strong> Automatically groups patients into <em>Ready for Round</em> (vitals done) vs <em>Pending Vitals</em> (warning).<br>
+        • <strong>Vitals Sparkline:</strong> 7-day temperature curve with a 100.4°F threshold marker.<br>
+        • <strong>Clinical Notes:</strong> Prescribe medications and document shift assessments.<br>
+        • <strong>Discharge Gatekeeper:</strong> 1-click discharge sign-off strictly unlocked once 3 consecutive fever-free days are verified.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>3. Facility Admin</strong></td>
+      <td>Strict 74-bed occupancy control; patient intake and discharge logistics; freeing beds immediately upon patient departure.</td>
+      <td>
+        • <strong>74-Bed Interactive Matrix:</strong> Visual tiles 1–74 color-coded by real-time status (Red: Occupied, Amber: Discharge Pending, Green: Available).<br>
+        • <strong>Discharge Desk:</strong> Instant queue of doctor-approved discharges; 1-click "Finalize Discharge & Release Bed".<br>
+        • <strong>Patient Intake Form:</strong> Validates bed availability (strictly blocks admissions when active census = 74).<br>
+        • <strong>Mortality Recording:</strong> De-registration tracking outcome and timestamp.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>4. Head Doctor / Medical Director</strong></td>
+      <td>Clinical quality oversight; real-time comparison against the 15% mortality / 85% success benchmark.</td>
+      <td>
+        • <strong>Quality Scorecards:</strong> Live Mortality Rate vs 15% threshold and Cure Rate vs 85% benchmark.<br>
+        • <strong>Automated Alerts:</strong> Critical warning banner triggered if mortality exceeds 15.0%.<br>
+        • <strong>Shift Compliance Progress:</strong> Real-time gauges tracking Nurse Checks % and Doctor Rounds % for the day.<br>
+        • <strong>Length of Stay (ALOS):</strong> Rolling average stay duration to detect bed-blocking.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h2>Q3: Logical Constraints & Technical Rules for Developers</h2>
+<p>In addition to UI screen designs, developers must enforce the following clinical and architectural constraints:</p>
+
+<h3>1. Sequential Rounding Dependency (Nurse-First Rule)</h3>
+<ul>
+  <li>Daily patient vitals flags (<code>todayTempRecorded</code> and <code>todayDoctorVisited</code>) reset to <code>false</code> at <code>00:00:00</code> daily.</li>
+  <li>If an Attending Doctor opens a patient record marked <em>Pending Vitals</em>, the system displays an amber warning: <em>"Warning: Temperature has not been recorded today by a nurse."</em> The doctor is given the option to record the temperature directly, which tags the record as <code>recordedBy: "doctor"</code> and clears the nurse queue item.</li>
+</ul>
+
+<h3>2. The Strict 3-Day Fever-Free Cure Algorithm</h3>
+<ul>
+  <li><strong>Fever Definition:</strong> Any reading $T \ge 100.4^\circ\text{F}$ ($38.0^\circ\text{C}$) constitutes a fever.</li>
+  <li><strong>Streak Reset:</strong> If on Day 3 a patient logs $100.4^\circ\text{F}$ or higher, the fever-free counter <strong>strictly resets to Day 0</strong>.</li>
+  <li><strong>Discharge Permission Gate:</strong> The "Sign Discharge Order" action is disabled in the API and UI unless <code>consecutiveFeverFreeDays &ge; 3</code>.</li>
+  <li><strong>Two-Stage Handoff:</strong> Doctor approval sets status to <code>doctor_approved_discharge</code> (alerting Admin desk). Only Admin completion sets status to <code>discharged</code> and frees the bed in the 74-bed matrix.</li>
+</ul>
+
+<h3>3. Capacity & Calculation Formulas</h3>
+<ul>
+  <li><strong>Capacity Ceiling:</strong> Hard ceiling at 74 concurrent active patients. Attempts to admit when active census = 74 returns HTTP 422 with a descriptive error.</li>
+  <li><strong>Closed Cases Formula:</strong> To avoid distorting rates with active inpatients, mortality and cure rates are calculated exclusively on resolved cases:
+    $$\text{Mortality Rate} = \frac{\text{Total Deceased}}{\text{Discharged Cured} + \text{Deceased}} \times 100, \quad \text{Cure Rate} = \frac{\text{Discharged Cured}}{\text{Discharged Cured} + \text{Deceased}} \times 100$$
+  </li>
+  <li><strong>Threshold Alert:</strong> If Mortality Rate &gt; 15.0%, trigger high-priority alert banner across all administrative views.</li>
+</ul>
+
+<h2>Q4: Sprint Planning Mathematical Optimization</h2>
+<p>
+  <strong>Context:</strong> Team Velocity = 25 Story Points (SP). Already committed: 3 stories &times; 5 SP = 15 SP. Remaining capacity = <strong>10 Story Points</strong>.<br>
+  <strong>Value Weights:</strong> Low = 1 unit ($V_L = 1$), Medium = 3 units ($V_M = 3$), High = 6 units ($V_H = 6$).
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Priority</th>
+      <th>Value ($V$)</th>
+      <th>Effort ($W$)</th>
+      <th>Value Density ($V/W$)</th>
+      <th>Selection Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>J</strong></td><td>Low</td><td>1</td><td>0.1</td><td><strong>10.00</strong></td><td><strong>SELECTED</strong></td></tr>
+    <tr><td><strong>A</strong></td><td>High</td><td>6</td><td>1.0</td><td><strong>6.00</strong></td><td><strong>SELECTED</strong></td></tr>
+    <tr><td><strong>I</strong></td><td>Low</td><td>1</td><td>0.3</td><td><strong>3.33</strong></td><td><strong>SELECTED</strong></td></tr>
+    <tr><td><strong>F</strong></td><td>Medium</td><td>3</td><td>1.0</td><td><strong>3.00</strong></td><td><strong>SELECTED</strong></td></tr>
+    <tr><td><strong>G</strong></td><td>Low</td><td>1</td><td>0.4</td><td><strong>2.50</strong></td><td><strong>SELECTED</strong></td></tr>
+    <tr><td><strong>B</strong></td><td>High</td><td>6</td><td>3.0</td><td><strong>2.00</strong></td><td><strong>SELECTED</strong></td></tr>
+    <tr><td><strong>H</strong></td><td>Low</td><td>1</td><td>0.5</td><td><strong>2.00</strong></td><td><strong>SELECTED</strong></td></tr>
+    <tr><td><strong>D</strong></td><td>Medium</td><td>3</td><td>2.0</td><td><strong>1.50</strong></td><td><strong>SELECTED</strong></td></tr>
+    <tr style="color: #94a3b8;"><td>C</td><td>High</td><td>6</td><td>5.0</td><td>1.20</td><td>Excluded (Heavy effort: 5 SP for 6 V)</td></tr>
+    <tr style="color: #94a3b8;"><td>E</td><td>Medium</td><td>3</td><td>3.0</td><td>1.00</td><td>Excluded (Low density: 1.0)</td></tr>
+  </tbody>
+</table>
+
+<h3>Optimization Comparison</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Strategy</th>
+      <th>Features Included</th>
+      <th>Total Effort</th>
+      <th>Total Value Delivered</th>
+      <th>Buffer Remaining</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Standard High-First</td>
+      <td>A, B, C, F</td>
+      <td>10.0 SP</td>
+      <td>21 Value Units</td>
+      <td>0.0 SP (Zero tolerance)</td>
+    </tr>
+    <tr class="highlight-row">
+      <td><strong>Optimal Knapsack</strong></td>
+      <td><strong>A, B, D, F, G, H, I, J</strong></td>
+      <td><strong>8.3 SP</strong></td>
+      <td><strong>22 Value Units</strong></td>
+      <td><strong>1.7 SP (Safety buffer)</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="info-box">
+  <strong>Final Mathematical Recommendation:</strong> Select <strong>{A, B, D, F, G, H, I, J}</strong>. This combination mathematically maximizes value at <strong>22 points</strong> (exceeding all alternatives) while consuming only <strong>8.3 story points</strong>, providing an essential 1.7 SP safety buffer to protect team velocity.
+</div>
+
+<div class="page-break"></div>
+
+<h2>Q2: Functional Prototype Implementation & Verification</h2>
+<p>
+  A fully working web application has been constructed with Next.js, Tailwind CSS, TypeScript, and Recharts, and is ready for immediate deployment:
+</p>
+<ul>
+  <li><strong>Workspace Directory:</strong> <code>C:\Users\kaulj\.gemini\antigravity\scratch\quarantine-facility-portal</code></li>
+  <li><strong>Build Verification:</strong> Compiled cleanly with zero errors (<code>next build</code> verified, static pages generated).</li>
+  <li><strong>Git Version Control:</strong> Initialized and committed (<code>main</code> branch, 15 files).</li>
+</ul>
+
+<h3>Key Demonstrable Workflows Built Into the Prototype:</h3>
+<ol>
+  <li><strong>Nurse Workflow (Streak Progression):</strong> Patients at Bed 5, 12, and 28 are pre-loaded with exactly 2 fever-free days. Recording a normal temperature ($&lt;100.4^\circ\text{F}$) advances the counter to 3/3 and automatically changes status to <em>Eligible for Discharge</em>.</li>
+  <li><strong>Doctor Workflow (Clinical Review & Signoff):</strong> Bed 40 has met the 3-day criterion. Opening Bed 40 displays the 7-day temperature trendline and activates the glowing green "Sign Discharge Order" button.</li>
+  <li><strong>Admin Workflow (Discharge Desk & Capacity):</strong> Bed 55 is pre-approved by the doctor. Clicking "Finalize Discharge" frees Bed 55, updating the 74-bed matrix to Available (Green).</li>
+  <li><strong>Executive Telemetry:</strong> Head Doctor dashboard computes live mortality vs the 15% threshold and cure rate vs 85%, alongside shift completion gauges.</li>
+</ol>
+
+<h3>Immediate Vercel Deployment Instructions</h3>
+<div class="code-block">
+# Method 1: Instant Vercel Deployment via CLI
+cd C:\Users\kaulj\.gemini\antigravity\scratch\quarantine-facility-portal
+npx vercel
+
+# Method 2: Push to your GitHub and connect to Vercel
+git remote add origin https://github.com/[YOUR_USERNAME]/quarantine-facility-portal.git
+git push -u origin main
+# In vercel.com -> "Add New Project" -> Import repository -> Deploy
+</div>
+
+</body>
+</html>

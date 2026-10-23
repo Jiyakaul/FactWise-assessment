@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Jiya Kaul TPM - FactWise Assessment</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 16mm 16mm 16mm 16mm;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    background: #ffffff;
+    line-height: 1.45;
+    font-size: 11.5pt;
+    margin: 0;
+    padding: 0;
+  }
+  .header-card {
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .candidate-name {
+    font-size: 20pt;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+    margin: 0;
+  }
+  .doc-title {
+    font-size: 12pt;
+    font-weight: 600;
+    color: #2563eb;
+    margin-top: 2px;
+  }
+  .meta-right {
+    text-align: right;
+    font-size: 9.5pt;
+    color: #475569;
+  }
+  .live-pill {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 8.5pt;
+    margin-top: 4px;
+  }
+  h2 {
+    font-size: 13pt;
+    font-weight: 700;
+    color: #0f172a;
+    border-left: 3.5px solid #2563eb;
+    padding-left: 8px;
+    margin: 18px 0 8px 0;
+  }
+  h3 {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 12px 0 4px 0;
+  }
+  p {
+    margin: 5px 0 8px 0;
+  }
+  ul, ol {
+    margin: 4px 0 8px 0;
+    padding-left: 18px;
+  }
+  li {
+    margin-bottom: 3px;
+  }
+  .link-box {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin: 10px 0;
+    font-size: 10pt;
+  }
+  .link-box a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 12px 0;
+    font-size: 10pt;
+  }
+  th, td {
+    border: 1px solid #cbd5e1;
+    padding: 6px 8px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #f1f5f9;
+    color: #0f172a;
+    font-weight: 700;
+  }
+  tr:nth-child(even) td {
+    background: #f8fafc;
+  }
+  .callout-box {
+    background: #eff6ff;
+    border-left: 3.5px solid #3b82f6;
+    padding: 8px 12px;
+    margin: 8px 0;
+    font-size: 10pt;
+    color: #1e3a8a;
+    border-radius: 0 4px 4px 0;
+  }
+  .success-box {
+    background: #f0fdf4;
+    border-left: 3.5px solid #16a34a;
+    padding: 8px 12px;
+    margin: 8px 0;
+    font-size: 10pt;
+    color: #14532d;
+    border-radius: 0 4px 4px 0;
+  }
+  .page-break {
+    page-break-before: always;
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header-card">
+  <div>
+    <h1 class="candidate-name">Jiya Kaul</h1>
+    <div class="doc-title">Technical Product Manager Assessment Submission | FactWise</div>
+  </div>
+  <div class="meta-right">
+    <div><strong>Role:</strong> Technical Product Manager</div>
+    <div><strong>Submission File:</strong> Jiya Kaul TPM.pdf</div>
+    <div class="live-pill">Includes Live Vercel Link & Codebase</div>
+  </div>
+</div>
+
+<div class="link-box">
+  <strong>Working Functional Prototype (Q2 Deliverable):</strong><br>
+  • <strong>Live Deployed Link:</strong> <a href="https://fact-wise-assessment-two.vercel.app">https://fact-wise-assessment-two.vercel.app</a><br>
+  • <strong>GitHub Repository:</strong> <a href="https://github.com/Jiyakaul/FactWise-assessment">https://github.com/Jiyakaul/FactWise-assessment</a>
+</div>
+
+<h2>Problem Understanding (My Approach as a Product Manager)</h2>
+<p>
+  The quarantine facility is facing an operational crisis: 74 patients (100% full occupancy), an aggressive virus with a 15% mortality benchmark, and severe staff burnout. After analyzing the head doctor's feedback, the root issues aren't lack of effort—they are <strong>uncoordinated handoffs</strong>:
+</p>
+<ul>
+  <li><strong>Unsynchronized Rounds:</strong> Doctors visit before nurses take vitals, wasting physician bandwidth on routine temperature measuring.</li>
+  <li><strong>Discharge Bottlenecks:</strong> Patients who meet the 3-day fever-free rule stay an extra 1–2 days because communication to the front desk is manual. This blocks waiting patients from entering the 74 beds.</li>
+  <li><strong>Zero Performance Feedback:</strong> The facility cannot see whether its treatment quality matches the 85% success benchmark.</li>
+</ul>
+
+<h2>Q1) App Users, Features, and Actions (Version 1 / MVP)</h2>
+<p>
+  For the first version, I designed the product around 4 distinct personas so each person has a focused workspace with clear operational boundaries:
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 17%;">User Type</th>
+      <th style="width: 33%;">Problem Solved for This Role</th>
+      <th style="width: 50%;">Features & Permitted Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1. Nurse</strong></td>
+      <td>Stops paper journal mix-ups, eliminates duplicate readings, and ensures every bed is checked daily.</td>
+      <td>
+        • <strong>Daily Rounding Queue:</strong> Tabbed view of <em>Needs Check Today</em> vs <em>Completed Today</em>.<br>
+        • <strong>Record Temperature Modal:</strong> Direct entry in °F with instant color feedback (Green: &lt;99.5°, Orange: 99.5–100.3°, Red: &ge;100.4°F).<br>
+        • <strong>Fever Streak Tracker:</strong> Automatic badge showing consecutive fever-free progress (e.g., 2/3 Days).<br>
+        • <em>Action:</em> Record daily vitals and observations. Cannot authorize discharges or alter bed assignments.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>2. Attending Doctor</strong></td>
+      <td>Eliminates wasted visits where vitals are missing; provides clear 7-day vitals trends; automates cure sign-off.</td>
+      <td>
+        • <strong>Sequential Queue:</strong> Segregated into <em>Ready for Round</em> (vitals already logged today) and <em>Pending Vitals</em> (warning indicator).<br>
+        • <strong>Vitals Trendline Sparkline:</strong> 7-day temperature curve with a clear 100.4°F fever reference line.<br>
+        • <strong>Doctor Notes Log:</strong> Document clinical evaluations and treatment changes.<br>
+        • <em>Action:</em> 1-click discharge sign-off (automatically enabled only when 3 fever-free days are verified).
+      </td>
+    </tr>
+    <tr>
+      <td><strong>3. Facility Admin / Front Desk</strong></td>
+      <td>Keeps all 74 beds tracked in real-time, removes checkout lag, and prevents over-admission.</td>
+      <td>
+        • <strong>74-Bed Interactive Matrix:</strong> Visual tiles for Beds 1–74 showing status at a glance (Red: Occupied, Amber: Discharge Pending, Green: Available).<br>
+        • <strong>Discharge Desk:</strong> Instant queue of doctor-approved discharges; 1-click "Finalize Discharge & Release Bed".<br>
+        • <em>Action:</em> Admit new patients into verified green beds; finalize departures; record patient mortality. Cannot edit clinical vitals.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>4. Head Doctor / Medical Director</strong></td>
+      <td>Gives leadership real-time visibility into whether the facility is meeting clinical benchmarks.</td>
+      <td>
+        • <strong>Quality Scorecards:</strong> Live Mortality Rate vs the 15% benchmark and Cure Rate vs the 85% target.<br>
+        • <strong>Critical Alert Banner:</strong> Automatically flashes red if mortality rises above 15.0%.<br>
+        • <strong>Shift Progress Telemetry:</strong> Real-time progress bars tracking Nurse checks % and Doctor rounds % completed today.<br>
+        • <em>Action:</em> Monitor center-wide telemetry and average length of stay (ALOS).
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h2>Q2) Functional Prototype (Built & Deployed)</h2>
+<p>
+  I built and deployed a production-grade web application to demonstrate the complete clinical workflow:
+</p>
+<ul>
+  <li><strong>Live Deployed URL:</strong> <a href="https://fact-wise-assessment-two.vercel.app">https://fact-wise-assessment-two.vercel.app</a></li>
+  <li><strong>GitHub Repository:</strong> <a href="https://github.com/Jiyakaul/FactWise-assessment">https://github.com/Jiyakaul/FactWise-assessment</a></li>
+  <li><strong>Tech Stack:</strong> Next.js 14 App Router, React 18, TypeScript, Tailwind CSS, Recharts, and Lucide React.</li>
+</ul>
+
+<div class="callout-box">
+  <strong>How to Test the Key Scenarios in the Live App:</strong>
+  <ol style="margin: 4px 0; padding-left: 18px;">
+    <li><strong>Nurse Streak Progression (Bed 5, 12, or 28):</strong> These beds are pre-loaded with exactly 2 fever-free days. Go to Nurse View &rarr; Click "Record Temp" &rarr; Enter normal temp (e.g. 98.6°F) &rarr; Notice it advances to 3/3 days and triggers "Eligible for Discharge".</li>
+    <li><strong>Doctor Review & Discharge (Bed 40):</strong> Bed 40 has completed 3 fever-free days. Switch to Doctor View &rarr; Open Bed 40 &rarr; The "Sign Discharge Order" button lights up green &rarr; Click to sign.</li>
+    <li><strong>Admin Bed Vacating (Bed 55):</strong> Switch to Admin View &rarr; Discharge Desk &rarr; Click "Finalize Discharge & Release Bed" &rarr; Bed 55 turns green (Available) in the 74-bed matrix immediately.</li>
+  </ol>
+</div>
+
+<h2>Q3) Logical Constraints & Edge Cases for Developers</h2>
+<p>
+  Beyond screens, developers need strict business logic so the system prevents human errors in an understaffed clinic:
+</p>
+
+<h3>1. Sequential Rounding Constraint (Nurse-First Rule)</h3>
+<ul>
+  <li>At <code>00:00:00</code> every night, daily vitals flags reset.</li>
+  <li>If a doctor opens a patient whose nurse check is still pending, display an amber warning: <em>"Warning: Temperature has not been recorded today by a nurse."</em></li>
+  <li>If the doctor decides to take the temperature anyway, allow manual intake right inside the modal, tag it as <code>recordedBy: "doctor"</code>, and clear the nurse's pending item so duplicate vitals aren't taken later.</li>
+</ul>
+
+<h3>2. The 3-Day Fever-Free Cure Rule (Strict Reset Engine)</h3>
+<ul>
+  <li><strong>Fever Definition:</strong> Body temperature $T \ge 100.4^\circ\text{F}$ ($38.0^\circ\text{C}$).</li>
+  <li><strong>Strict Reset:</strong> If a patient has 2 fever-free days and logs $100.5^\circ\text{F}$ on Day 3, the counter <strong>strictly resets to Day 0</strong>. No exceptions.</li>
+  <li><strong>Gated Sign-off:</strong> The "Sign Discharge Order" button is hard-disabled until <code>consecutiveFeverFreeDays &ge; 3</code>.</li>
+  <li><strong>Two-Stage Release:</strong> Doctor approval sets status to <code>doctor_approved_discharge</code>. The bed is NOT vacated until Admin completes the checkout, ensuring front desk is never out of sync.</li>
+</ul>
+
+<h3>3. Capacity & Metric Integrity</h3>
+<ul>
+  <li><strong>Hard 74-Bed Limit:</strong> New intake is disabled if active patients $= 74$. Trying to force-submit returns an error: <em>"Facility at maximum capacity (74/74 beds)."</em></li>
+  <li><strong>Closed Cases Formula:</strong> To prevent distorting mortality with patients currently undergoing treatment, compute rates on closed outcomes:
+    $$\text{Mortality Rate} = \frac{\text{Deceased}}{\text{Discharged Cured} + \text{Deceased}} \times 100, \quad \text{Cure Rate} = \frac{\text{Discharged Cured}}{\text{Discharged Cured} + \text{Deceased}} \times 100$$
+  </li>
+  <li><strong>Benchmark Warning:</strong> If Mortality Rate &gt; 15.0%, trigger an alert banner across leadership dashboards.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>Q4) Sprint Planning Mathematical Optimization (Knapsack Solution)</h2>
+<p>
+  <strong>Team Parameters:</strong> Velocity = 25 Story Points (SP). Already committed = 3 stories &times; 5 SP = 15 SP. <strong>Available Capacity = 10 SP</strong>.<br>
+  <strong>Value Rules:</strong> Low = 1 unit ($V_L = 1$), Medium = 3 units ($V_M = 3$), High = 6 units ($V_H = 6$).
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Priority</th>
+      <th>Value ($V$)</th>
+      <th>Effort ($W$)</th>
+      <th>Value Density ($V/W$)</th>
+      <th>Decision</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>J</strong></td><td>Low</td><td>1</td><td>0.1</td><td><strong>10.00</strong></td><td><strong>PICK (Top density)</strong></td></tr>
+    <tr><td><strong>A</strong></td><td>High</td><td>6</td><td>1.0</td><td><strong>6.00</strong></td><td><strong>PICK (High value, tiny effort)</strong></td></tr>
+    <tr><td><strong>I</strong></td><td>Low</td><td>1</td><td>0.3</td><td><strong>3.33</strong></td><td><strong>PICK</strong></td></tr>
+    <tr><td><strong>F</strong></td><td>Medium</td><td>3</td><td>1.0</td><td><strong>3.00</strong></td><td><strong>PICK</strong></td></tr>
+    <tr><td><strong>G</strong></td><td>Low</td><td>1</td><td>0.4</td><td><strong>2.50</strong></td><td><strong>PICK</strong></td></tr>
+    <tr><td><strong>B</strong></td><td>High</td><td>6</td><td>3.0</td><td><strong>2.00</strong></td><td><strong>PICK</strong></td></tr>
+    <tr><td><strong>H</strong></td><td>Low</td><td>1</td><td>0.5</td><td><strong>2.00</strong></td><td><strong>PICK</strong></td></tr>
+    <tr><td><strong>D</strong></td><td>Medium</td><td>3</td><td>2.0</td><td><strong>1.50</strong></td><td><strong>PICK</strong></td></tr>
+    <tr style="color: #94a3b8;"><td>C</td><td>High</td><td>6</td><td>5.0</td><td>1.20</td><td>SKIP (Consumes 50% of sprint capacity for 6 val)</td></tr>
+    <tr style="color: #94a3b8;"><td>E</td><td>Medium</td><td>3</td><td>3.0</td><td>1.00</td><td>SKIP (Lowest density)</td></tr>
+  </tbody>
+</table>
+
+<h3>Evaluating the Two Competing Options:</h3>
+<ol>
+  <li><strong>The Intuitive "High-First" Approach {A, B, C, F}:</strong>
+    <ul>
+      <li>Effort: $1 + 3 + 5 + 1 = \mathbf{10.0\text{ SP}}$ (100% capacity used, zero buffer)</li>
+      <li>Total Value Delivered: $6 + 6 + 6 + 3 = \mathbf{21\text{ Units}}$</li>
+    </ul>
+  </li>
+  <li><strong>The Optimal Knapsack Selection {A, B, D, F, G, H, I, J}:</strong>
+    <ul>
+      <li>Effort: $1.0 + 3.0 + 2.0 + 1.0 + 0.4 + 0.5 + 0.3 + 0.1 = \mathbf{8.3\text{ SP}}$</li>
+      <li>Total Value Delivered: $6 + 6 + 3 + 3 + 1 + 1 + 1 + 1 = \mathbf{22\text{ Units}}$</li>
+      <li><strong>Safety Buffer Remaining:</strong> $10.0 - 8.3 = \mathbf{1.7\text{ Story Points}}$</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="success-box">
+  <strong>My Decision as TPM:</strong> Add <strong>Features A, B, D, F, G, H, I, and J</strong> to the sprint.
+  <br>
+  Why? Feature C is a "trap" (5 points for only 6 value). By trading C for D and all low-effort items, we deliver <strong>22 Value units instead of 21</strong>, while using only <strong>8.3 points instead of 10.0</strong>. This leaves a 1.7-point (17%) buffer, which protects the team against unforeseen bugs or hospital emergencies.
+</div>
+
+<h2>Future Scope & Out-of-the-Box Product Ideas (v2 Roadmap)</h2>
+<p>
+  To take this solution from a simple MVP to an enterprise-grade medical platform, here are key enhancements I would prioritize:
+</p>
+<ol>
+  <li><strong>Bedside Barcode / QR Wristband Scanning:</strong>
+    In an understaffed ward, nurses can easily confuse patients in neighboring beds. Equipping tablets with barcode scanners to scan patient wristbands ensures 100% data integrity before logging vitals.
+  </li>
+  <li><strong>Offline-First Progressive Web App (PWA):</strong>
+    Quarantine facilities often have thick concrete or shielded walls that drop Wi-Fi connectivity. Using service workers and local IndexedDB caching ensures nurses can log vitals completely offline; records sync automatically when back in Wi-Fi range.
+  </li>
+  <li><strong>HIPAA / DISHA Compliant Role Permissions:</strong>
+    Ensure strict field-level masking. Nurses need bed numbers and vitals; admin staff need intake and billing; only licensed physicians should access full medical histories.
+  </li>
+  <li><strong>Bluetooth BLE Smart Thermometer Integration:</strong>
+    Pairing the web app with contactless digital thermometers via Web Bluetooth API can auto-populate temperatures with zero typing, saving ~30 seconds per bed (37 minutes saved per nurse shift across 74 beds).
+  </li>
+</ol>
+
+</body>
+</html>
